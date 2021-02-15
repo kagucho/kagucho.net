@@ -1,0 +1,4 @@
+baseURL = "https://kagucho.net/"
+languageCode = "ja-jp"
+title = "神楽坂一丁目通信局"
+publishDir = "docs"
