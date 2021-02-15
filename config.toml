@@ -1,5 +1,19 @@
-baseURL = "https://kagucho.net/"
+#baseURL = "https://kagucho.net/"
+baseURL = ""
 languageCode = "ja-jp"
 title = "神楽坂一丁目通信局"
 theme = "hugograyscale"
 publishDir = "docs"
+disableKinds = ["taxonomy", "taxonomyTerm"]
+
+[params]
+    # Provide some metadata for search and indexing services
+    description = "東京理科大学 神楽坂キャンパス サークル 神楽坂一丁目通信局"
+
+[Author]
+    name = "神楽坂一丁目通信局"
+    email = "kagucho.net@gmail.com"
+
+[Social]
+    twitter = "kagucho"
+    github = "kagucho"
