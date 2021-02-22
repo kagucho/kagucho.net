@@ -5,7 +5,7 @@
 任意の方法でHugoを入手し，
 
 ```
-$ git clone --recursive-submodule --depth 1 git@github.com:kagucho/kagucho.net.git
+$ git clone git@github.com:kagucho/kagucho.net.git --recursive
 $ hugo server
 ```
 
