@@ -18,7 +18,7 @@ $ hugo server
 - `themes/`: テーマのsubmodule.
 - `config.toml`: config
 
-## WIP
+## ToDo
 - [ ] 活動についての説明を現状に即す
 - [ ] 作品ギャラリーのページを作る
 - [ ] ActionsでCI/CD
