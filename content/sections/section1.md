@@ -4,7 +4,7 @@ weight: 2
 ---
 
 ## What's kagucho?
-### Indipendent
+### Independent
 神楽坂一丁目通信局の特徴は、内部に3つの部が存在していることです。Prog部、CD部、そしてDTM部が存在し、別々の活動を行う一方で、Prog部が作成したゲームにCD部がデザインし、DTM部が音楽をつけたりと、独立の活動を行いながら時には一つの作品を作成しています。
 
 ### Creative
