@@ -3,7 +3,12 @@ title: "Contact"
 weight: 4
 ---
 
+## Join Us
+
+Discord: TBA
+
 ## Contact Us
+
 
 お問い合わせはこちらまで
 
