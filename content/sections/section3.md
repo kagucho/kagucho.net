@@ -5,7 +5,11 @@ weight: 4
 
 ## Join Us
 
-Discord: TBA
+神楽坂一丁目通信局では、東京理科大学に在籍している方の他、他大学の学生またはそれに準ずる方の我々の活動への参加も歓迎しています。
+
+入局希望の方、サークルの活動などについて話を聞きたい方、その他質問がある1〜2年生の方向けにDiscordサーバを開設しています。
+
+{{< big-button text="Discord" href="https://discord.gg/atjSWmX3pQ" >}}
 
 ## Contact Us
 
