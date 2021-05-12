@@ -9,7 +9,7 @@ weight: 4
 
 入局希望の方、サークルの活動などについて話を聞きたい方、その他質問がある1〜2年生の方向けにDiscordサーバを開設しています。
 
-{{< big-button text="Discord" href="https://discord.gg/Kr2uZQGJ" >}}
+{{< big-button text="Discord" href="https://discord.gg/Gsk8PDQyJw" >}}
 
 ## Contact Us
 
