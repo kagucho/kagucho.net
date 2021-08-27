@@ -9,6 +9,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     # Provide some metadata for search and indexing services
     description = "東京理科大学 神楽坂キャンパス サークル 神楽坂一丁目通信局"
     favicon = "ico/favicon.ico"
+    images = ["img/kagucho.png"]
 
 [Author]
     name = "神楽坂一丁目通信局"
