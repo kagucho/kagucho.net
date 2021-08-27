@@ -5,7 +5,11 @@
 body {
   padding-top: 3rem;
   padding-bottom: 3rem;
-  color: #5a5a5a;
+  /* color: #5a5a5a; */
+  color: #f0f0f0;
+  background: url("./img/space.png") no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 
