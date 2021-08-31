@@ -68,6 +68,9 @@ footer {
   margin: 1rem 0; /* Space out the Bootstrap <hr> more */
 }
 
+.featurette-divider5 {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
 /* Thin out the marketing headings */
 .featurette-heading {
   font-weight: 300;
@@ -100,7 +103,7 @@ footer {
 /* ----- */
 .TheWork-Prog{
   color: white;
-  width: 80%;
+  width: 1;
   padding: 2%;
   display: table-cell;
   border-bottom: 1px solid gray;
@@ -108,7 +111,7 @@ footer {
 }
 .TheWork-CD{
   color: white;
-  width: 80%;
+  width: 100%;
   padding: 2%;
   display: table-cell; 
   border-bottom: 2px solid gray;
@@ -116,14 +119,15 @@ footer {
 }
 .TheWork-DTM{
   color: white;
-  width: 80%;
+  width: 100%;
   padding: 2%; 
-   border-bottom: 1px solid gray;
+  border-bottom: 1px solid gray;
   border-top : 1px solid gray
 }
 .cardcard-body{
   background: rgba(50,50,50,0.4);
   border-radius: 10px;
+  width:100%;
 }
 .Prog-explation{
   width: 1000;
