@@ -128,7 +128,7 @@ footer {
   border-bottom: 1px solid gray;
   border-top : 1px solid gray
 }
-.cardcard-body{
+.card{
   background: rgba(50,50,50,0.4);
   border-radius: 10px;
   width:100%;
