@@ -103,17 +103,23 @@ footer {
   width: 80%;
   padding: 2%;
   display: table-cell;
+  border-bottom: 1px solid gray;
+  border-top : 1px solid gray;
 }
 .TheWork-CD{
   color: white;
   width: 80%;
   padding: 2%;
-  display: table-cell;
+  display: table-cell; 
+  border-bottom: 2px solid gray;
+  border-top : 1px solid gray
 }
 .TheWork-DTM{
   color: white;
   width: 80%;
-  padding: 2%;
+  padding: 2%; 
+   border-bottom: 1px solid gray;
+  border-top : 1px solid gray
 }
 .cardcard-body{
   background: rgba(50,50,50,0.4);
