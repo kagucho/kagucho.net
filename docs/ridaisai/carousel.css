@@ -98,7 +98,28 @@ footer {
 }
 
 /* ----- */
-.TheWork{
-  color: black;
-
+.TheWork-Prog{
+  color: white;
+  width: 80%;
+  padding: 2%;
+  display: table-cell;
 }
+.TheWork-CD{
+  color: white;
+  width: 80%;
+  padding: 2%;
+  display: table-cell;
+}
+.TheWork-DTM{
+  color: white;
+  width: 80%;
+  padding: 2%;
+}
+.cardcard-body{
+  background: rgba(50,50,50,0.4);
+  border-radius: 10px;
+}
+.Prog-explation{
+  width: 1000;
+}
+/* .img-fluid{} */
