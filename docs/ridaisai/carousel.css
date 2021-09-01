@@ -18,6 +18,10 @@ footer {
   background: rgba(0,0,0,.6);
 }
 
+a:hover {
+  color: #a2eef7;
+}
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -138,9 +142,6 @@ footer {
 .card-body{
   width: 100%;
   background: none !important;
-}
-.Prog-explation{
-  width: 1000;
 }
 
 .btn:hover {
