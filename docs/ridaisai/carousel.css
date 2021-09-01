@@ -125,6 +125,7 @@ footer {
   color: white;
   width: 100%;
   padding: 2%; 
+  display: table-cell; 
   border-bottom: 1px solid gray;
   border-top : 1px solid gray
 }
@@ -135,7 +136,8 @@ footer {
   width:100%;
 }
 .card-body{
-  width: 90%;
+  width: 100%;
+  background: none !important;
 }
 .Prog-explation{
   width: 1000;
