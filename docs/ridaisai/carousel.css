@@ -130,10 +130,25 @@ footer {
 }
 .card{
   background: rgba(50,50,50,0.4);
+  background-blend-mode: multiply;
   border-radius: 10px;
   width:100%;
 }
+.card-body{
+  width: 90%;
+}
 .Prog-explation{
   width: 1000;
+}
+
+.btn:hover {
+  color: #a2eef7;
+  /*background-color: rgba(11,11,11,.8);*/
+  text-shadow: 1px 1px 1px rgba(0,255,167,.8);
+  background-blend-mode: multiple;
+}
+
+.text-muted-custom {
+  color: rgba(120, 176, 151,.8) !important;
 }
 /* .img-fluid{} */
