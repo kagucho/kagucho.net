@@ -60,7 +60,7 @@
 <body>
   <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="../index.html">KAGUCHO</a>
+      <a class="navbar-brand" href="#">kagucho 2021</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -73,13 +73,13 @@
         </li>
         -->
           <li class="nav-item">
-            <a class="nav-link" href="#">Prog</a>
+            <a class="nav-link js-scroll-trigger" href="#prog" onclick="$('#prog-contents').collapse('show');return false;">Prog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">DTM</a>
+            <a class="nav-link js-scroll-trigger" href="#dtm" onclick="$('#dtm-contents').collapse('show');return false;">DTM</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">CD</a>
+            <a class="nav-link js-scroll-trigger" href="#cd" onclick="$('#cd-contents').collapse('show');return false;">CD</a>
           </li>
         </ul>
         <!-- 多分いらない
@@ -88,221 +88,196 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
       -->
-      </div>
-    </nav>
-  </header>
-
-  <main role="main">
-
-    <div id="teams" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#teams" data-slide-to="0" class="active"></li>
-        <li data-target="#teams" data-slide-to="1"></li>
-        <li data-target="#teams" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-            <rect width="100%" height="100%" fill="#777" />
-          </svg>
-          <img src="./img/prog_vscode.png" class="d-block" alt="VS Code">
-          <div class="container">
-            <div class="carousel-caption text-left">
-              <h1>Prog部</h1>
-              <p>
-              <h3>ゲーム・コンピュータサイエンス・電子工作</h3>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">作品を見る</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-            <rect width="100%" height="100%" fill="#777" />
-          </svg>
-          <img src="./img/dtm_daw.png" class="d-block" alt="DAW">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>DTM部</h1>
-              <p>
-              <h3>電子音楽</h3>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">作品を見る</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-            <rect width="100%" height="100%" fill="#777" />
-          </svg>
-          <img src="./img/cd_blender_clipstudio.png" class="d-block" alt="Blendere">
-          <div class="container">
-            <div class="carousel-caption text-right">
-              <h1>CD部</h1>
-              <p>
-              <h3>2D/3DCG</h3>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">作品を見る</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#teams" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#teams" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
+  </nav>
+</header>
+
+<main role="main">
+
+  <div id="teams" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#teams" data-slide-to="0" class="active"></li>
+      <li data-target="#teams" data-slide-to="1"></li>
+      <li data-target="#teams" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <img src="./img/prog_vscode.png" class="d-block" alt="VS Code">
+        <div class="container">
+          <div class="carousel-caption text-left">
+            <h1><a class="no-link-color-line js-scroll-trigger" href="#prog" onclick="$('#prog-contents').collapse('show');return false;">Prog部</a></h1>
+            <p>
+            <h3>ゲーム・コンピュータサイエンス・電子工作</h3>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <img src="./img/dtm_flstudio.png" class="d-block" alt="FL Studio">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1><a class="no-link-color-line js-scroll-trigger" href="#dtm" onclick="$('#dtm-contents').collapse('show');return false;">DTM部</a></h1>
+            <p>
+            <h3>電子音楽</h3>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <img src="./img/cd_blender_clipstudio.png" class="d-block" alt="Blender & CLIP STUDIO PAINT">
+        <div class="container">
+          <div class="carousel-caption text-right">
+            <h1><a class="no-link-color-line js-scroll-trigger" href="#cd" onclick="$('#cd-contents').collapse('show');return false;">CD部</a></h1>
+            <p>
+            <h3>2D/3DCG</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#teams" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#teams" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 
 
     <!-- Marketing messaging and featurettes
   ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
-    <div class="container marketing">
+  <div class="container marketing">
+    <div class="accordion">
 
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-      <!-- PROG部 -->
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Prog部 <span class="text-muted"> Programming</span>
+    <!-- START THE FEATURETTES -->
+ 
+    <hr class="featurette-divider" id="prog">
+    <!-- PROG部 -->
+    <div class="row featurette card">
+      <button class="btn btn-link no-link-color-line" data-toggle="collapse" data-target="#prog-contents"
+        aria-expanded="true" aria-controls="prog-contents">
+        <div class="card-header">
+          <h2 class="featurette-heading card-header">Prog部 <span class="text-muted-custom"> Programming</span>
           </h2>
-          <p>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
-              aria-expanded="false" aria-controls="collapseExample">
-              作品を見る
-            </a>
-          </p>
         </div>
-
-
-        <div class="collapse" id="collapseExample">
-          <div class="cardcard-body">
-            <!-- ここから -->
-            <div class="TheWork-Prog">
-              <h3>Window10のハッキング</h3>
-              <h4> By Waipu & 茂ちゃん</h4>
-              <h3>リンク　http ~</h3>
-              <p>
-                Windows10のハッキングを実演！
-              </p>
-
-              <img src="./img/exploit_show.png" class="img-fluid" alt="Responsive image" style="display: block;">
-            </div>
-            <!-- ここまでが一つの作品欄 -->
+      </button>
+      <div class="collapse" id="prog-contents">
+        <div class="card card-body">
+          <!-- ここから -->
+          <div class="TheWork-Prog">
+            <h3 class="card-title">Window10のハッキング</h3>
+            <h4> By Waipu & 茂ちゃん</h4>
+            <h3>リンク　http ~</h3>
+            <p class="card-text">
+              Windows10のハッキングを実演！
+            </p>
+            <img src="./img/exploit_show.png" class="img-fluid" alt="Responsive image" style="display: block;">
+          </div>
+          <!-- ここまでが一つの作品欄 -->
+          <div class="TheWork-Prog">
+            <h3 class="card-title">WebPathtracer</h3>
+            <h4> By きなこもち</h4>
+            <a href="https://kinakomoti-321.github.io/WebPathtracer/" target="_blank" rel="noopener noreferrer">https://kinakomoti-321.github.io/WebPathtracer/</a>
+            <p class="card-text">
+              近年名前を聞くようになったレイトレーシングを簡素ながらもWeb上で実装したものです。
+            </p>
           </div>
 
         </div>
       </div>
-      <!-- PROG部 -->
-
-      <!-- DTM部 -->
-      <hr class=" featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">DTM部 <span class="text-muted"> DeskTop Music</span>
+    </div>
+    <!-- PROG部 -->
+    <!-- DTM部 -->
+    <hr class="featurette-divider" id="dtm">
+    <div class="row featurette card">
+      <button class="btn btn-link no-link-color-line" data-toggle="collapse" data-target="#dtm-contents"
+        aria-expanded="true" aria-controls="prog-contents">
+        <div class="card-header">
+          <h2 class="featurette-heading">DTM部 <span class="text-muted-custom"> DeskTop Music</span>
           </h2>
-          <p>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample1" role="button"
-              aria-expanded="false" aria-controls="collapseExample1">
-              作品を見る
-            </a>
-          </p>
         </div>
-
-
-        <div class="collapse" id="collapseExample1">
-          <div class="cardcard-body">
-            <div class="TheWork-DTM">
-              <h3>作品名 By Futami</h3>
-              <p>テストで使用している　文章長くすれば長くなりそうああああああああああああああああああああああああああああああああ
-              </p>
-              <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1090299157&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-              <div
-                style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
-                <a href="https://soundcloud.com/fut4m1" title="Futami" target="_blank"
-                  style="color: #cccccc; text-decoration: none;">Futami</a> · <a
-                  href="https://soundcloud.com/fut4m1/this-shits-fire" title="Futami - This Shits Fire *FREE DL*"
-                  target="_blank" style="color: #cccccc; text-decoration: none;">Futami - This Shits Fire *FREE
-                  DL*</a>
-              </div>
-
+      </button>
+      <div class="collapse" id="dtm-contents">
+        <div class="card card-body">
+          <div class="TheWork-DTM">
+            <h3>作品名 By Futami</h3>
+            <p>テストで使用している　文章長くすれば長くなりそうああああああああああああああああああああああああああああああああ
+            </p>
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1090299157&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+              <a href="https://soundcloud.com/fut4m1" title="Futami" target="_blank"
+                style="color: #cccccc; text-decoration: none;">Futami</a> · <a
+                href="https://soundcloud.com/fut4m1/this-shits-fire" title="Futami - This Shits Fire *FREE DL*"
+                target="_blank" style="color: #cccccc; text-decoration: none;">Futami - This Shits Fire *FREE
+                DL*</a>
             </div>
-
-            <div class="TheWork-DTM">
-              <h3>作品名 By Futami</h3>
-              <p>
-                テストで使用している　文章長くすれば長くなりそうああああああああああああああああああああああああああああああああ
-              </p>
-              <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1090299157&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-              <div
-                style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
-                <a href="https://soundcloud.com/fut4m1" title="Futami" target="_blank"
-                  style="color: #cccccc; text-decoration: none;">Futami</a> · <a
-                  href="https://soundcloud.com/fut4m1/this-shits-fire" title="Futami - This Shits Fire *FREE DL*"
-                  target="_blank" style="color: #cccccc; text-decoration: none;">Futami - This Shits Fire *FREE
-                  DL*</a>
-              </div>
-
+          </div>
+          <div class="TheWork-DTM">
+            <h3>作品名 By Futami</h3>
+            <p>
+              テストで使用している　文章長くすれば長くなりそうああああああああああああああああああああああああああああああああ
+            </p>
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1090299157&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+              <a href="https://soundcloud.com/fut4m1" title="Futami" target="_blank"
+                style="color: #cccccc; text-decoration: none;">Futami</a> · <a
+                href="https://soundcloud.com/fut4m1/this-shits-fire" title="Futami - This Shits Fire *FREE DL*"
+                target="_blank" style="color: #cccccc; text-decoration: none;">Futami - This Shits Fire *FREE
+                DL*</a>
             </div>
           </div>
         </div>
       </div>
-      <!-- DTM部 -->
-
-      <!-- CD部 -->
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">CD部 <span class="text-muted"> Creative Design</span>
+    </div>
+    <!-- DTM部 -->
+    <!-- CD部 -->
+    <hr class="featurette-divider" id="cd">
+    <div class="row featurette card">
+      <button class="btn btn-link no-link-color-line" data-toggle="collapse" data-target="#cd-contents"
+        aria-expanded="true" aria-controls="prog-contents">
+        <div class="card-header">
+          <h2 class="featurette-heading">CD部 <span class="text-muted-custom"> Creative Design</span>
           </h2>
-          <p>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button"
-              aria-expanded="false" aria-controls="collapseExample2">
-              作品を見る
-            </a>
-          </p>
         </div>
-
-
-        <div class="collapse" id="collapseExample2">
-          <div class="cardcard-body">
-            <div class="TheWork-CD">
-              <h3>作品名 By Someone</h3>
-              <div class="CD-explation"></div>
-              テストで使用している
-
-              <img src="./img/Mandelbrot.png" class="img-fluid" alt="Responsive image">
-            </div>
+      </button>
+      <div class="collapse" id="cd-contents">
+        <div class="card card-body">
+          <div class="TheWork-CD">
+            <h3>作品名 By Someone</h3>
+            <div class="CD-explation"></div>
+            テストで使用している
+            <img src="./img/Mandelbrot.png" class="img-fluid" alt="Responsive image">
           </div>
         </div>
       </div>
-      <hr class="featurette-divider5">
-      <!-- CD部 -->
-      <!-- /END THE FEATURETTES -->
+    </div>
+    <hr class="featurette-divider5">
+    <!-- CD部 -->
+    <!-- /END THE FEATURETTES -->
+    </div>
+  </div><!-- /.container -->
 
-    </div><!-- /.container -->
 
-
-    <!-- FOOTER -->
-    <footer class="container">
-      <p class="float-right"><a href="#">Back to top</a></p>
-      <p>&copy; 1994-2021 神楽坂一丁目通信局</p>
-      <p>作品の権利は神楽坂一丁目通信局及び作者に帰属します．</p>
-    </footer>
-  </main>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script>
-</body>
-
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 1994-2021 <a href="https://kagucho.net/">神楽坂一丁目通信局</a></p>
+    <p>作品の権利は神楽坂一丁目通信局及び作者に帰属します．</p>
+  </footer>
+</main>
+<!--
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../vendor/bootstrap/js/bootstrap.bundle.js"></script></body>
+ 
+-->
+  <script src="https://kagucho.net/vendor/jquery/jquery.min.js"></script>
+  <script src="https://kagucho.net/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kagucho.net/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="./js/grayscale.js"></script>
 </html>
