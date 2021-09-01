@@ -8,14 +8,19 @@ body {
   /* color: #5a5a5a; */
   color: #f0f0f0;
   /* 背景画像 */
-  background: url("./img/space.png");
+  background: rgba(0,0,0,.3) url("../img/space.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  background-blend-mode: multiply;
 }
 
 footer {
   background: rgba(0,0,0,.6);
+}
+
+a:hover {
+  color: #a2eef7;
 }
 
 /* CUSTOMIZE THE CAROUSEL
@@ -125,6 +130,7 @@ footer {
   color: white;
   width: 100%;
   padding: 2%; 
+  display: table-cell; 
   border-bottom: 1px solid gray;
   border-top : 1px solid gray
 }
@@ -135,10 +141,8 @@ footer {
   width:100%;
 }
 .card-body{
-  width: 90%;
-}
-.Prog-explation{
-  width: 1000;
+  width: 100%;
+  background: none !important;
 }
 
 .btn:hover {
