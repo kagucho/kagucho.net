@@ -73,13 +73,13 @@
         </li>
         -->
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#prog">Prog</a>
+            <a class="nav-link js-scroll-trigger" href="#prog" onclick="$('#prog-contents').collapse('show');return false;">Prog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#dtm" tabindex="-1" aria-disabled="true">DTM</a>
+            <a class="nav-link js-scroll-trigger" href="#dtm" onclick="$('#dtm-contents').collapse('show');return false;">DTM</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#cd" tabindex="-1" aria-disabled="true">CD</a>
+            <a class="nav-link js-scroll-trigger" href="#cd" onclick="$('#cd-contents').collapse('show');return false;">CD</a>
           </li>
         </ul>
         <!-- 多分いらない
@@ -150,23 +150,21 @@
   ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
-  <div class="container marketing">
+  <div class="container marketing accordion">
+    <div class="card">
 
-      <!-- START THE FEATURETTES -->
-
+    <!-- START THE FEATURETTES -->
+ 
     <hr class="featurette-divider" id="prog">
     <!-- PROG部 -->
     <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">Prog部 <span class="text-muted"> Programming</span>
-        </h2>
-        <p>
-          <button class="btn btn-primary" data-toggle="collapse" data-target="#prog-contents"
-            aria-expanded="false" aria-controls="prog-contents">
-            作品を見る
-          </button>
-        </p>
-      </div>
+      <button class="btn btn-link no-link-color-line" data-toggle="collapse" data-target="#prog-contents"
+        aria-expanded="true" aria-controls="prog-contents">
+        <div class="card-header">
+          <h2 class="featurette-heading">Prog部 <span class="text-muted"> Programming</span>
+          </h2>
+        </div>
+      </button>
       <div class="collapse" id="prog-contents">
         <div class="card card-body">
           <!-- ここから -->
@@ -187,16 +185,13 @@
     <!-- DTM部 -->
     <hr class="featurette-divider" id="dtm">
     <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">DTM部 <span class="text-muted"> DeskTop Music</span>
-        </h2>
-        <p>
-          <button class="btn btn-primary" data-toggle="collapse" data-target="#dtm-contents"
-            aria-expanded="false" aria-controls="dtm-contents">
-            作品を見る
-          </button>
-        </p>
-      </div>
+      <button class="btn btn-link no-link-color-line" data-toggle="collapse" data-target="#dtm-contents"
+        aria-expanded="true" aria-controls="prog-contents">
+        <div class="card-header">
+          <h2 class="featurette-heading">DTM部 <span class="text-muted"> DeskTop Music</span>
+          </h2>
+        </div>
+      </button>
       <div class="collapse" id="dtm-contents">
         <div class="card card-body">
           <div class="TheWork-DTM">
@@ -235,16 +230,13 @@
     <!-- CD部 -->
     <hr class="featurette-divider" id="cd">
     <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">CD部 <span class="text-muted"> Creative Design</span>
-        </h2>
-        <p>
-          <button class="btn btn-primary" data-toggle="collapse" data-target="#cd-contents"
-            aria-expanded="false" aria-controls="cd-contents">
-            作品を見る
-          </button>
-        </p>
-      </div>
+      <button class="btn btn-link no-link-color-line" data-toggle="collapse" data-target="#cd-contents"
+        aria-expanded="true" aria-controls="prog-contents">
+        <div class="card-header">
+          <h2 class="featurette-heading">CD部 <span class="text-muted"> Creative Design</span>
+          </h2>
+        </div>
+      </button>
       <div class="collapse" id="cd-contents">
         <div class="card card-body">
           <div class="TheWork-CD">
@@ -259,6 +251,7 @@
     <hr class="featurette-divider5">
     <!-- CD部 -->
     <!-- /END THE FEATURETTES -->
+    </div>
   </div><!-- /.container -->
 
 
