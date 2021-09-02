@@ -9,6 +9,7 @@ body {
   color: #f0f0f0;
   /* 背景画像 */
   background: rgba(0,0,0,.3) url("../images/space.png");
+  background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
