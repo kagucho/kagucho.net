@@ -142,7 +142,7 @@ a:hover {
 }
 .card-body{
   width: 90%;
-  background: inherit !important;
+  background: none !important;
 }
 
 .btn:hover {
