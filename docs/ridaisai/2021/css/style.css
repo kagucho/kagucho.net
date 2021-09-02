@@ -142,16 +142,31 @@ a:hover {
 }
 .card-body{
   width: 90%;
+  background: inherit !important;
 }
 
 .btn:hover {
   color: #a2eef7;
-  /*background-color: rgba(11,11,11,.8);*/
   text-shadow: 1px 1px 1px rgba(0,255,167,.8);
-  background-blend-mode: multiple;
+  background-blend-mode: multiply;
 }
 
 .text-muted-custom {
   color: rgba(120, 176, 151,.8) !important;
 }
+
+.thumb-custom-prog {
+  display: block;
+  background: #25292c;
+  border: #25292c;
+  width: 15rem;
+}
+
+.thumb-custom-cd {
+  display: block;
+  background: #25292c;
+  border: #25292c;
+  width: 30rem;
+}
+
 /* .img-fluid{} */
