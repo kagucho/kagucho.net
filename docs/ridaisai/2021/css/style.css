@@ -157,16 +157,16 @@ a:hover {
 
 .thumb-custom-prog {
   display: block;
-  background: #25292c;
-  border: #25292c;
-  width: 15rem;
+  background: #999999;
+  border: #999999;
+  height: 15rem;
 }
 
 .thumb-custom-cd {
   display: block;
-  background: #25292c;
-  border: #25292c;
-  width: 30rem;
+  background: #999999;
+  border: #999999;
+  height: 30rem;
 }
 
 /* .img-fluid{} */
