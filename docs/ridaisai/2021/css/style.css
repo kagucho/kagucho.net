@@ -159,14 +159,14 @@ a:hover {
   display: block;
   background: #999999;
   border: #999999;
-  height: 15rem;
+  width: 15rem;
 }
 
 .thumb-custom-cd {
   display: block;
   background: #999999;
   border: #999999;
-  height: 30rem;
+  width: 30rem;
 }
 
 /* .img-fluid{} */
