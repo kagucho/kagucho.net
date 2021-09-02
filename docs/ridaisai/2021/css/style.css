@@ -8,7 +8,7 @@ body {
   /* color: #5a5a5a; */
   color: #f0f0f0;
   /* 背景画像 */
-  background: rgba(0,0,0,.3) url("../img/space.png");
+  background: rgba(0,0,0,.3) url("../images/space.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -141,18 +141,32 @@ a:hover {
   width:100%;
 }
 .card-body{
-  width: 100%;
+  width: 90%;
   background: none !important;
 }
 
 .btn:hover {
   color: #a2eef7;
-  /*background-color: rgba(11,11,11,.8);*/
   text-shadow: 1px 1px 1px rgba(0,255,167,.8);
-  background-blend-mode: multiple;
+  background-blend-mode: multiply;
 }
 
 .text-muted-custom {
   color: rgba(120, 176, 151,.8) !important;
 }
+
+.thumb-custom-prog {
+  display: block;
+  background: #999999;
+  border: #999999;
+  width: 15rem;
+}
+
+.thumb-custom-cd {
+  display: block;
+  background: #999999;
+  border: #999999;
+  width: 30rem;
+}
+
 /* .img-fluid{} */
