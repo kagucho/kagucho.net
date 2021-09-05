@@ -16,11 +16,8 @@ weight: 4
 
 お問い合わせはこちらまで
 
-kagucho.net@gmail.com
-
-or
-
 {{< socialhandles >}}
+    {{< email email="kagucho.net@gmail.com" >}}
     {{< twitter user="kagucho" >}}
 {{< /socialhandles >}}
 
