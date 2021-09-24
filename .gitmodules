@@ -1,3 +1,6 @@
 [submodule "themes/hugograyscale"]
 	path = themes/hugograyscale
 	url = https://github.com/runningstream/hugograyscale.git
+[submodule "docs/ridaisai/2021"]
+	path = docs/ridaisai/2021
+	url = https://github.com/kagucho/ridaisai2021.git
