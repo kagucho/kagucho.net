@@ -1,0 +1,16 @@
+# 一番下に並ぶリンク。行を足せば増えます。
+- name: "X"
+  handle: "@kagucho"
+  url: "https://x.com/kagucho"
+
+- name: "SoundCloud"
+  handle: "kagutyo"
+  url: "https://soundcloud.com/kagutyo"
+
+- name: "Instagram"
+  handle: "@kgc_recordings"
+  url: "https://www.instagram.com/kgc_recordings/"
+
+- name: "Contact"
+  handle: "取材・ご依頼"
+  url: "mailto:kagucho.net@gmail.com"

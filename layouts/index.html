@@ -1,0 +1,232 @@
+{{ define "main" }}
+{{- $sections   := .Site.GetPage "/sections" -}}
+{{- $hero       := and $sections ($sections.Resources.GetMatch "hero.md") -}}
+{{- $about      := and $sections ($sections.Resources.GetMatch "about.md") -}}
+{{- $join       := and $sections ($sections.Resources.GetMatch "join.md") -}}
+
+{{- $actsPage   := .Site.GetPage "/activities" -}}
+{{- $acts       := slice -}}
+{{- with $actsPage }}{{ $acts = sort (.Resources.ByType "page") ".Params.weight" }}{{ end -}}
+
+{{- $relPage    := .Site.GetPage "/releases" -}}
+{{- $rels       := slice -}}
+{{- with $relPage }}{{ $rels = sort (.Resources.ByType "page") ".Params.weight" }}{{ end -}}
+{{- $kgc        := where $rels ".Params.group" "kgc" -}}
+{{- $members    := where $rels ".Params.group" "member" -}}
+{{- $hasRel     := or $kgc $members -}}
+
+<div class="playhead" id="playhead"></div>
+
+<nav class="rail" aria-label="セクション">
+  <div class="rail-mark">KGC REC.</div>
+  <div class="rail-nav" id="railnav">
+    <a href="#about"><span class="n">01</span>About</a>
+    <a href="#activities"><span class="n">02</span>Acts</a>
+    <a href="#year"><span class="n">03</span>Year</a>
+    {{ if $hasRel }}<a href="#releases"><span class="n">04</span>Rel.</a>{{ end }}
+    <a href="#join"><span class="n">05</span>Join</a>
+  </div>
+  <div class="rail-mark">TUS KAGURAZAKA</div>
+</nav>
+
+<nav class="topbar" aria-label="セクション">
+  <span class="wm">KGC RECORDINGS</span>
+  <a href="#about">About</a>
+  <a href="#activities">Acts</a>
+  <a href="#year">Year</a>
+  {{ if $hasRel }}<a href="#releases">Rel.</a>{{ end }}
+  <a href="#join">Join</a>
+</nav>
+
+<div class="page">
+
+  {{- with $hero }}
+  <header class="hero">
+    <canvas id="wave" aria-hidden="true"></canvas>
+    <div class="wrap">
+      {{ with .Params.eyebrow }}<p class="hero-tag">{{ . }}</p>{{ end }}
+      <h1 class="wordmark">
+        {{ .Params.wordmark | default $.Site.Title }}
+        {{ with .Params.subname }}<span class="thin">{{ . }}</span>{{ end }}
+      </h1>
+      {{ with .Params.tagline }}<p class="hero-lede">{{ . }}</p>{{ end }}
+      <div class="hero-sub">{{ .Content }}</div>
+      {{ with .Params.buttons }}
+      <div class="cta-row">
+        {{ range . }}
+        <a class="btn{{ if .primary }} btn-solid{{ end }}" href="{{ .href }}">{{ if .primary }}<span class="dot"></span>{{ end }}{{ .text }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </header>
+  {{- end }}
+
+  {{- with $about }}
+  <section class="band" id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <p class="eyebrow">About</p>
+        {{ with .Params.heading }}<h2>{{ . }}</h2>{{ end }}
+        <div class="prose sub">{{ .Content }}</div>
+      </div>
+      {{ with .Params.facts }}
+      <dl class="facts reveal">
+        {{ range . }}
+        <div class="fact">
+          <dt>{{ .label }}</dt>
+          <dd>{{ .value }}</dd>
+        </div>
+        {{ end }}
+      </dl>
+      {{ end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{- if $acts }}
+  <section class="band" id="activities">
+    <div class="wrap">
+      <p class="eyebrow reveal">Activities</p>
+      <h2 class="reveal">2つの軸</h2>
+      <div class="acts">
+        {{ range $acts }}
+        <article class="act act--{{ .Params.style | default "solid" }} reveal">
+          <div class="act-head">
+            <span class="act-name">{{ .Title }}</span>
+            {{ with .Params.full }}<span class="act-full">{{ . }}</span>{{ end }}
+          </div>
+          <div class="prose">{{ .Content }}</div>
+          {{ with .Params.button }}<a class="btn" href="{{ .href }}">{{ .text }}</a>{{ end }}
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+  {{- with hugo.Data.year }}
+  <section class="band year" id="year">
+    <div class="wrap">
+      <p class="eyebrow reveal">Year</p>
+      <h2 class="reveal">一年の流れ</h2>
+      <div class="reveal">
+        <div class="ruler" aria-hidden="true">
+          {{ range . }}<span>{{ .quarter }}</span>{{ end }}
+        </div>
+        <div class="clips">
+          {{ range . }}
+          <article class="clip">
+            <div class="clip-season">{{ .season }}</div>
+            <div class="clip-tags">
+              {{ range .tags }}<span class="tag{{ if .public }} tag--out{{ end }}">{{ .name }}</span>{{ end }}
+            </div>
+          </article>
+          {{ end }}
+        </div>
+        <div class="legend">
+          <span><i class="out"></i>頒布・出演のある日</span>
+          <span><i></i>部内の活動</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+  {{- if $hasRel }}
+  <section class="band" id="releases">
+    <div class="wrap">
+      <p class="eyebrow reveal">Releases</p>
+      <h2 class="reveal">作品</h2>
+
+      {{- if $kgc }}
+      <h3 class="group-head reveal">KGC シリーズ</h3>
+      <div class="rel-grid reveal">
+        {{ range $kgc }}
+        <article class="rel{{ if not .Params.cover }} rel--noart{{ end }}">
+          {{ partial "release-art.html" . }}
+          <div class="rel-body">
+            <div class="rel-meta">{{ .Params.year }}{{ with .Params.event }} ／ {{ . }}{{ end }}</div>
+            <h4 class="rel-title">{{ .Title }}</h4>
+            {{ with .Content }}<div class="rel-note prose">{{ . }}</div>{{ end }}
+            {{ with .Params.tracks }}
+            <ol class="tracks">
+              {{ range . }}
+              <li>
+                <span class="tr-title">{{ if .link }}<a href="{{ .link }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}</span>
+                {{ with .artist }}<span class="tr-artist">{{ . }}</span>{{ end }}
+              </li>
+              {{ end }}
+            </ol>
+            {{ end }}
+            {{ $lbl := .Params.linkLabel | default "聴く" }}
+            {{ with .Params.link }}<a class="btn btn-sm" href="{{ . }}">{{ $lbl }}</a>{{ end }}
+          </div>
+        </article>
+        {{ end }}
+      </div>
+      {{- end }}
+
+      {{- if $members }}
+      <h3 class="group-head reveal">部員のリリース</h3>
+      <div class="rel-grid rel-grid--member reveal">
+        {{ range $members }}
+        <article class="rel rel--member{{ if not .Params.cover }} rel--noart{{ end }}">
+          {{ partial "release-art.html" . }}
+          <div class="rel-body">
+            <div class="rel-artist">{{ .Params.artist }}</div>
+            <h4 class="rel-title">{{ .Title }}</h4>
+            <div class="rel-meta">{{ .Params.year }}</div>
+            {{ with .Content }}<div class="rel-note prose">{{ . }}</div>{{ end }}
+            {{ $lbl := .Params.linkLabel | default "聴く" }}
+            {{ with .Params.link }}<a class="btn btn-sm" href="{{ . }}">{{ $lbl }}</a>{{ end }}
+          </div>
+        </article>
+        {{ end }}
+      </div>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{- with $join }}
+  <section class="band" id="join">
+    <div class="wrap">
+      <div class="join reveal">
+        <div>
+          <p class="eyebrow">Join Us</p>
+          {{ with .Params.heading }}<h2>{{ . }}</h2>{{ end }}
+          <div class="prose sub">{{ .Content }}</div>
+          {{ with .Params.note }}<p class="join-note">{{ . }}</p>{{ end }}
+        </div>
+        {{ with .Params.buttons }}
+        <div class="cta-row">
+          {{ range . }}
+          <a class="btn{{ if .primary }} btn-solid{{ end }}" href="{{ .href }}">{{ if .primary }}<span class="dot"></span>{{ end }}{{ .text }}</a>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+  {{- with hugo.Data.links }}
+  <section class="band" id="links">
+    <div class="wrap">
+      <p class="eyebrow reveal">Links</p>
+      <h2 class="reveal">ふだんの様子</h2>
+      <div class="links reveal">
+        {{ range . }}
+        <a class="link" href="{{ .url }}">
+          <span class="h">{{ .name }}</span>
+          <span class="s">{{ .handle }}</span>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+</div>
+{{ end }}
