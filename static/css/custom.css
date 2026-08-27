@@ -1,0 +1,25 @@
+/* ------------------------------------------------------------------
+   kagucho.net 追加スタイル
+   テーマ本体(themes/hugograyscale)は触らず、このファイルで上書きする
+   ------------------------------------------------------------------ */
+
+/* 本文中の箇条書き
+   このテーマはセクション全体を中央寄せにするが、箇条書きは
+   「左端から書き始める」性質を保つため、黒丸だけが左に取り残される。
+   黒丸を消し、左の余白も取り払って文字と一緒に中央へ揃える。
+   class の付いた ul(ナビ・SNSボタン)には影響しないよう :not([class]) で限定。 */
+.content-section ul:not([class]),
+.content-section ol:not([class]),
+header ul:not([class]),
+header ol:not([class]) {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.content-section ul:not([class]) li,
+.content-section ol:not([class]) li,
+header ul:not([class]) li,
+header ol:not([class]) li {
+  margin-bottom: 0.5em;
+}

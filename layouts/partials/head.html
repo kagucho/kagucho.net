@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {{ $description := $.Param "description" }}
 {{- with $description }}<meta name="description" content="{{ . }}">{{ end }}
-{{ $author := .Params.author.name | default .Site.Author.name }}
+{{ $author := .Params.author.name | default .Site.Params.author.name }}
 <meta name="author" content="{{ $author }}">
 
 <title>{{- $.Param "title" -}}</title>
@@ -30,5 +30,5 @@
 <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
 
 <link href="{{ "css/grayscale.css" | absURL }}" rel="stylesheet">
+<link href="{{ "css/custom.css" | absURL }}" rel="stylesheet">
 
-{{ template "_internal/google_analytics_async.html" . }}

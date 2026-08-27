@@ -3,7 +3,7 @@ languageCode = "ja-jp"
 title = "神楽坂一丁目通信局"
 theme = "hugograyscale"
 publishDir = "docs"
-disableKinds = ["taxonomy", "taxonomyTerm"]
+disableKinds = ["taxonomy", "term"]
 
 [params]
     # Provide some metadata for search and indexing services
@@ -11,10 +11,10 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     favicon = "ico/favicon.ico"
     images = ["img/kagucho.png"]
 
-[Author]
+[params.author]
     name = "神楽坂一丁目通信局"
     email = "kagucho.net@gmail.com"
 
-[Social]
+[params.social]
     twitter = "kagucho"
     github = "kagucho"

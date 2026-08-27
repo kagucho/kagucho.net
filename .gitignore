@@ -1,0 +1,2 @@
+# Hugo が実行中に作る一時ファイル
+.hugo_build.lock
