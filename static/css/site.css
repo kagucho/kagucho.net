@@ -183,10 +183,9 @@ section{position:relative}
 h2{
   font-family:var(--f-jp);
   font-weight:900;
-  font-size:clamp(1.6rem,3.6vw,2.5rem);
-  line-height:1.4;
-  margin:0 0 28px;
-  text-wrap:balance;
+  font-size:clamp(1.45rem,3vw,2.25rem);
+  line-height:1.45;
+  margin:0 0 30px;
 }
 
 .group-head{
@@ -352,6 +351,9 @@ h2{
 /* ------------------------------------------------------------------
    Activities
    ------------------------------------------------------------------ */
+/* 見出しを置かないセクションでは、ラベルと中身の間隔を足す */
+.eyebrow + .acts{margin-top:34px}
+
 .acts{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -490,7 +492,36 @@ h2{
   grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
   gap:clamp(14px,2.4vw,22px);
 }
-.rel-grid--member{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+
+/* 部員のリリースは、格子ではなく縦に積む一覧 */
+.rel-list{
+  display:flex;
+  flex-direction:column;
+  border-top:1px solid var(--line);
+}
+.rel-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:clamp(16px,3vw,36px);
+  padding:22px 0;
+  border-bottom:1px solid var(--line);
+  min-width:0;
+}
+.rel-row .rel-art{
+  width:92px;
+  height:92px;
+  flex:none;
+  aspect-ratio:auto;
+}
+.rel-row .rel-body{flex:1 1 240px;gap:3px}
+.rel-row .rel-title{font-size:1.08rem}
+.rel-row .player{flex:1 1 320px;margin-top:0}
+
+@media (max-width:640px){
+  .rel-row{gap:14px}
+  .rel-row .player{flex:1 1 100%}
+}
 
 .rel{
   border:1px solid var(--line);
@@ -526,6 +557,29 @@ h2{
 .rel-title{margin:0;font-weight:700;font-size:1rem;line-height:1.5}
 .rel-note{font-size:.88rem;color:var(--muted);line-height:1.8}
 .rel .btn{align-self:flex-start;margin-top:4px}
+
+/* 試聴プレイヤー（SoundCloud の埋め込み） */
+.player{
+  margin-top:6px;
+  border:1px solid var(--line);
+  background:var(--ink-700);
+  line-height:0;
+}
+.player iframe{display:block;width:100%;height:120px;border:0}
+
+.rel-src{
+  align-self:flex-start;
+  margin-top:2px;
+  font-family:var(--f-mono);
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--dim);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:color .2s ease,border-color .2s ease;
+}
+.rel-src:hover{color:var(--green);border-bottom-color:rgba(66,220,163,.5)}
 
 .tracks{
   list-style:none;
@@ -571,13 +625,15 @@ h2{
     radial-gradient(120% 160% at 0% 0%,rgba(66,220,163,.09),transparent 60%),
     var(--ink-800);
   padding:clamp(32px,5.5vw,64px);
+}
+.join-body{
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
   gap:clamp(24px,4vw,48px);
   align-items:center;
 }
-@media (max-width:820px){.join{grid-template-columns:1fr}}
-.join h2{margin-bottom:16px}
+@media (max-width:820px){.join-body{grid-template-columns:1fr}}
+.join h2{margin-bottom:26px}
 .join-note{
   margin:18px 0 0;
   font-family:var(--f-mono);

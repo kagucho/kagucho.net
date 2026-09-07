@@ -7,7 +7,7 @@ subname: "神楽坂一丁目通信局"
 tagline: "君が創り上げる、君だけの世界。"
 buttons:
   - text: "作品を聴く"
-    href: "https://soundcloud.com/kagutyo"
+    href: "#releases"
     primary: true
   - text: "新歓の相談をする"
     href: "#join"

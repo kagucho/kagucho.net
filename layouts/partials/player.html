@@ -1,0 +1,16 @@
+{{- /*
+  再生プレイヤー。link が SoundCloud の URL のときだけ埋め込む。
+  front matter で embed: false と書けば、その1件だけ埋め込みを止められる。
+*/ -}}
+{{- $link := .Params.link -}}
+{{- $embed := .Params.embed | default true -}}
+{{- if and $link $embed (in $link "soundcloud.com") -}}
+{{- $src := printf "https://w.soundcloud.com/player/?url=%s&color=%%2342dca3&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false" ($link | urlquery) -}}
+<div class="player">
+  <iframe
+    src="{{ $src | safeURL }}"
+    title="{{ .Title }} の試聴プレイヤー"
+    width="100%" height="120" frameborder="0" scrolling="no" allow="autoplay"
+    loading="lazy"></iframe>
+</div>
+{{- end -}}

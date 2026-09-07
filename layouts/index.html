@@ -15,27 +15,29 @@
 {{- $members    := where $rels ".Params.group" "member" -}}
 {{- $hasRel     := or $kgc $members -}}
 
+{{- /* 実際に存在するセクションだけを並べる。番号も自動で振り直される */ -}}
+{{- $nav := slice -}}
+{{- if $about }}{{ $nav = $nav | append (dict "id" "about" "label" "About") }}{{ end -}}
+{{- if $acts }}{{ $nav = $nav | append (dict "id" "activities" "label" "Acts") }}{{ end -}}
+{{- if hugo.Data.year }}{{ $nav = $nav | append (dict "id" "year" "label" "Year") }}{{ end -}}
+{{- if $hasRel }}{{ $nav = $nav | append (dict "id" "releases" "label" "Rel.") }}{{ end -}}
+{{- if $join }}{{ $nav = $nav | append (dict "id" "join" "label" "Join") }}{{ end -}}
+
 <div class="playhead" id="playhead"></div>
 
 <nav class="rail" aria-label="セクション">
   <div class="rail-mark">KGC REC.</div>
   <div class="rail-nav" id="railnav">
-    <a href="#about"><span class="n">01</span>About</a>
-    <a href="#activities"><span class="n">02</span>Acts</a>
-    <a href="#year"><span class="n">03</span>Year</a>
-    {{ if $hasRel }}<a href="#releases"><span class="n">04</span>Rel.</a>{{ end }}
-    <a href="#join"><span class="n">05</span>Join</a>
+    {{ range $i, $n := $nav }}<a href="#{{ $n.id }}"><span class="n">{{ printf "%02d" (add $i 1) }}</span>{{ $n.label }}</a>
+    {{ end }}
   </div>
   <div class="rail-mark">TUS KAGURAZAKA</div>
 </nav>
 
 <nav class="topbar" aria-label="セクション">
   <span class="wm">KGC RECORDINGS</span>
-  <a href="#about">About</a>
-  <a href="#activities">Acts</a>
-  <a href="#year">Year</a>
-  {{ if $hasRel }}<a href="#releases">Rel.</a>{{ end }}
-  <a href="#join">Join</a>
+  {{ range $nav }}<a href="#{{ .id }}">{{ .label }}</a>
+  {{ end }}
 </nav>
 
 <div class="page">
@@ -64,22 +66,22 @@
 
   {{- with $about }}
   <section class="band" id="about">
-    <div class="wrap about-grid">
-      <div class="reveal">
-        <p class="eyebrow">About</p>
-        {{ with .Params.heading }}<h2>{{ . }}</h2>{{ end }}
-        <div class="prose sub">{{ .Content }}</div>
-      </div>
-      {{ with .Params.facts }}
-      <dl class="facts reveal">
-        {{ range . }}
-        <div class="fact">
-          <dt>{{ .label }}</dt>
-          <dd>{{ .value }}</dd>
-        </div>
+    <div class="wrap">
+      <p class="eyebrow reveal">About</p>
+      {{ with .Params.heading }}<h2 class="reveal">{{ . }}</h2>{{ end }}
+      <div class="about-grid">
+        <div class="prose sub reveal">{{ .Content }}</div>
+        {{ with .Params.facts }}
+        <dl class="facts reveal">
+          {{ range . }}
+          <div class="fact">
+            <dt>{{ .label }}</dt>
+            <dd>{{ .value }}</dd>
+          </div>
+          {{ end }}
+        </dl>
         {{ end }}
-      </dl>
-      {{ end }}
+      </div>
     </div>
   </section>
   {{- end }}
@@ -88,7 +90,6 @@
   <section class="band" id="activities">
     <div class="wrap">
       <p class="eyebrow reveal">Activities</p>
-      <h2 class="reveal">2つの軸</h2>
       <div class="acts">
         {{ range $acts }}
         <article class="act act--{{ .Params.style | default "solid" }} reveal">
@@ -140,7 +141,7 @@
       <h2 class="reveal">作品</h2>
 
       {{- if $kgc }}
-      <h3 class="group-head reveal">KGC シリーズ</h3>
+      {{ if $members }}<h3 class="group-head reveal">KGC シリーズ</h3>{{ end }}
       <div class="rel-grid reveal">
         {{ range $kgc }}
         <article class="rel{{ if not .Params.cover }} rel--noart{{ end }}">
@@ -168,19 +169,20 @@
       {{- end }}
 
       {{- if $members }}
-      <h3 class="group-head reveal">部員のリリース</h3>
-      <div class="rel-grid rel-grid--member reveal">
+      {{ if $kgc }}<h3 class="group-head reveal">部員のリリース</h3>{{ end }}
+      <div class="rel-list reveal">
         {{ range $members }}
-        <article class="rel rel--member{{ if not .Params.cover }} rel--noart{{ end }}">
+        <article class="rel-row">
           {{ partial "release-art.html" . }}
           <div class="rel-body">
-            <div class="rel-artist">{{ .Params.artist }}</div>
+            {{ with .Params.artist }}<div class="rel-artist">{{ . }}</div>{{ end }}
             <h4 class="rel-title">{{ .Title }}</h4>
             <div class="rel-meta">{{ .Params.year }}</div>
             {{ with .Content }}<div class="rel-note prose">{{ . }}</div>{{ end }}
             {{ $lbl := .Params.linkLabel | default "聴く" }}
-            {{ with .Params.link }}<a class="btn btn-sm" href="{{ . }}">{{ $lbl }}</a>{{ end }}
+            {{ with .Params.link }}<a class="rel-src" href="{{ . }}">{{ $lbl }} で開く</a>{{ end }}
           </div>
+          {{ partial "player.html" . }}
         </article>
         {{ end }}
       </div>
@@ -193,19 +195,21 @@
   <section class="band" id="join">
     <div class="wrap">
       <div class="join reveal">
-        <div>
-          <p class="eyebrow">Join Us</p>
-          {{ with .Params.heading }}<h2>{{ . }}</h2>{{ end }}
-          <div class="prose sub">{{ .Content }}</div>
-          {{ with .Params.note }}<p class="join-note">{{ . }}</p>{{ end }}
-        </div>
-        {{ with .Params.buttons }}
-        <div class="cta-row">
-          {{ range . }}
-          <a class="btn{{ if .primary }} btn-solid{{ end }}" href="{{ .href }}">{{ if .primary }}<span class="dot"></span>{{ end }}{{ .text }}</a>
+        <p class="eyebrow">Join Us</p>
+        {{ with .Params.heading }}<h2>{{ . }}</h2>{{ end }}
+        <div class="join-body">
+          <div>
+            <div class="prose sub">{{ .Content }}</div>
+            {{ with .Params.note }}<p class="join-note">{{ . }}</p>{{ end }}
+          </div>
+          {{ with .Params.buttons }}
+          <div class="cta-row">
+            {{ range . }}
+            <a class="btn{{ if .primary }} btn-solid{{ end }}" href="{{ .href }}">{{ if .primary }}<span class="dot"></span>{{ end }}{{ .text }}</a>
+            {{ end }}
+          </div>
           {{ end }}
         </div>
-        {{ end }}
       </div>
     </div>
   </section>
