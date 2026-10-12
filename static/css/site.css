@@ -45,6 +45,8 @@ body{
   line-height:1.95;
   -webkit-font-smoothing:antialiased;
 }
+/* スマホでは本文を少し小さく、行間も少し詰める */
+@media (max-width:640px){body{font-size:15px;line-height:1.9}}
 
 a{color:inherit}
 img{max-width:100%;display:block}
@@ -156,7 +158,7 @@ img{max-width:100%;display:block}
   width:100%;
   max-width:var(--maxw);
   margin:0 auto;
-  padding:0 clamp(20px,5vw,56px);
+  padding:0 clamp(24px,5vw,56px);   /* スマホでも左右に 24px は空ける */
 }
 
 section{position:relative}
@@ -165,6 +167,8 @@ section{position:relative}
   padding:clamp(80px,10vw,140px) 0;
   border-top:1px solid var(--line);
 }
+/* スマホでは縦に積まれて長くなるので、セクションの上下の余白を詰める */
+@media (max-width:640px){.band{padding:56px 0}}
 
 .eyebrow{
   font-family:var(--f-mono);
@@ -183,10 +187,20 @@ section{position:relative}
 h2{
   font-family:var(--f-jp);
   font-weight:900;
-  font-size:clamp(1.45rem,3vw,2.25rem);
+  font-size:clamp(1.55rem,3vw,2.25rem);
   line-height:1.45;
   margin:0 0 30px;
+  /* 日本語の見出しを文節で折り返し、行の長さをそろえる（「〜なりま／す。」のような泣き別れを防ぐ） */
+  word-break:auto-phrase;
+  text-wrap:balance;
 }
+/* 「、」ごとのまとまり（layouts/partials/phrase.html）。iPhone の Safari は
+   auto-phrase に未対応なので、こちらで「、」の後ろで折り返すようにする */
+h2 .ph,.fact dd .ph{display:inline-block;text-wrap:wrap}   /* まとまりの中では行をそろえない */
+
+/* 文章の最後の行が「す。」のような1〜2文字だけにならないようにする
+   （対応ブラウザのみ。未対応のブラウザでは今までどおり表示される） */
+p,dd,.official{text-wrap:pretty}
 
 .group-head{
   font-family:var(--f-mono);
@@ -285,6 +299,12 @@ h2{
   .wave span:nth-child(n+65){display:none}
 }
 .hero .wrap{position:relative;z-index:2}
+/* スマホでは画面いっぱいの高さに固定せず、上の空白をなくす。
+   波形は下の余白（150px）に収まる高さにする */
+@media (max-width:640px){
+  .hero{min-height:0;padding:48px 0 150px}
+  .wave{height:160px}
+}
 
 .hero-tag{
   font-family:var(--f-mono);
@@ -294,6 +314,8 @@ h2{
   text-transform:uppercase;
   color:var(--muted);
   margin:0 0 26px;
+  word-break:keep-all;           /* 「音楽制作サーク／ル」と割らず、スペースの位置で折り返す */
+  overflow-wrap:anywhere;        /* それでも収まらないときだけ、どこでも折り返す */
 }
 
 .wordmark{
@@ -489,6 +511,12 @@ h2{
 }
 .clip-season{font-weight:900;font-size:1.5rem;line-height:1}
 .clip-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+/* スマホでは春夏秋冬を縦に1行ずつ並べ、高さの固定をやめて季節と札を横に並べる */
+@media (max-width:760px){
+  .clip{flex-direction:row;align-items:center;gap:18px;min-height:0;padding:16px 18px}
+  .clip-season{flex:none;width:1.6em}
+  .clip-tags{margin-top:0}
+}
 
 .tag{
   font-family:var(--f-mono);
@@ -667,6 +695,11 @@ h2{
     var(--ink-800);
   padding:clamp(32px,5.5vw,64px);
 }
+/* スマホでは枠の内側を少し詰めて、見出しが1まとまりずつ収まるようにする */
+@media (max-width:640px){
+  .join{padding:32px 22px}
+  .join h2{font-size:1.35rem}    /* 枠の中は幅が狭いので、ほかの見出しより少し小さく */
+}
 .join-body{
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
@@ -711,8 +744,14 @@ h2{
   letter-spacing:.14em;
   color:var(--dim);
   text-transform:uppercase;
+  overflow-wrap:anywhere;        /* 2列で幅が狭いときにアカウント名をはみ出させない */
 }
 .link:hover .s{color:var(--green)}
+/* スマホでは1列だと縦に長くなるので2列にする */
+@media (max-width:640px){
+  .links{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .link{padding:20px 18px}
+}
 
 footer{
   border-top:1px solid var(--line);

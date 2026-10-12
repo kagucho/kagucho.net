@@ -68,7 +68,7 @@
   <section class="band" id="about">
     <div class="wrap">
       <p class="eyebrow reveal">About</p>
-      {{ with .Params.heading }}<h2 class="reveal">{{ . }}</h2>{{ end }}
+      {{ with .Params.heading }}<h2 class="reveal">{{ partial "phrase.html" . }}</h2>{{ end }}
       <div class="about-grid">
         <div class="prose sub reveal">{{ .Content }}</div>
         {{ with .Params.facts }}
@@ -76,7 +76,7 @@
           {{ range . }}
           <div class="fact">
             <dt>{{ .label }}</dt>
-            <dd>{{ .value }}</dd>
+            <dd>{{ partial "phrase.html" .value }}</dd>
           </div>
           {{ end }}
         </dl>
@@ -196,7 +196,7 @@
     <div class="wrap">
       <div class="join reveal">
         <p class="eyebrow">Join Us</p>
-        {{ with .Params.heading }}<h2>{{ . }}</h2>{{ end }}
+        {{ with .Params.heading }}<h2>{{ partial "phrase.html" . }}</h2>{{ end }}
         <div class="join-body">
           <div>
             <div class="prose sub">{{ .Content }}</div>
