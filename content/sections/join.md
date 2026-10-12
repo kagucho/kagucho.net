@@ -1,6 +1,6 @@
 ---
 title: "Join Us"
-heading: "まず、話を聞きに来てください。"
+heading: "まずは、話を聞きに来てください。"
 buttons:
   - text: "LINE オープンチャット"
     href: "https://line.me/ti/g2/e7szlQwki8Mr7lJrux6gZvzC-C4pSdI7YQljng"
