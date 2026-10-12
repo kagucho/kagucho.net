@@ -397,20 +397,25 @@ p,dd,.official{text-wrap:pretty}
 }
 .fact{
   background:var(--ink-800);
-  padding:20px 22px;
+  padding:14px 22px;             /* 項目が多いので、1行ずつの上下は詰めておく */
   display:flex;
   flex-direction:column;
-  gap:4px;
+  gap:2px;
   min-width:0;
 }
 .fact dt{
   font-family:var(--f-mono);
   font-size:10px;
+  line-height:1.6;
   letter-spacing:.18em;
   text-transform:uppercase;
   color:var(--dim);
 }
-.fact dd{margin:0;font-weight:700;font-size:1.02rem;line-height:1.5}
+.fact dd{margin:0;font-weight:700;font-size:1.02rem;line-height:1.55;word-break:auto-phrase}
+@media (max-width:640px){
+  .fact{padding:12px 18px}
+  .fact dd{font-size:.95rem}
+}
 
 /* ------------------------------------------------------------------
    Activities
