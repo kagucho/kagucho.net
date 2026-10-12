@@ -15,7 +15,8 @@
   --line-strong:rgba(255,255,255,.16);
 
   --text:#E6ECE9;
-  --muted:#8A9A93;
+  --body:#D3DBD7;                /* 本文の段落。見出し（--text）より一段だけ控えめな白 */
+  --muted:#8A9A93;               /* 補足やラベルなどの控えめな文字 */
   --dim:#5A6B64;
 
   /* 緑：サークルの色。濃淡2段で使い、色数は増やさない */
@@ -221,7 +222,7 @@ p,dd,.official{text-wrap:pretty}
 .prose a{color:var(--green);text-decoration:none;border-bottom:1px solid rgba(66,220,163,.4)}
 .prose a:hover{color:#6BEBBC}
 
-.sub{color:var(--muted)}
+.sub{color:var(--body)}
 
 /* ------------------------------------------------------------------
    ヒーロー
@@ -346,7 +347,7 @@ p,dd,.official{text-wrap:pretty}
   max-width:18em;
   text-wrap:balance;
 }
-.hero-sub{color:var(--muted);margin:0 0 38px}
+.hero-sub{color:var(--body);margin:0 0 38px}
 .hero-sub p{margin:0;max-width:26em}
 
 .cta-row{display:flex;flex-wrap:wrap;gap:12px}
@@ -462,7 +463,7 @@ p,dd,.official{text-wrap:pretty}
   text-transform:uppercase;
   color:var(--dim);
 }
-.act .prose{color:var(--muted)}
+.act .prose{color:var(--body)}
 .act .btn{align-self:flex-start;margin-top:auto}
 
 /* ------------------------------------------------------------------
@@ -624,7 +625,7 @@ p,dd,.official{text-wrap:pretty}
   color:var(--green);
 }
 .rel-title{margin:0;font-weight:700;font-size:1rem;line-height:1.5}
-.rel-note{font-size:.88rem;color:var(--muted);line-height:1.8}
+.rel-note{font-size:.88rem;color:var(--body);line-height:1.8}
 .rel .btn{align-self:flex-start;margin-top:4px}
 
 /* 試聴プレイヤー（SoundCloud の埋め込み） */
