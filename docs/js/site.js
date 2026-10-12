@@ -3,7 +3,7 @@
    1. 左の柱の再生ヘッド（スクロール位置）
    2. いま見ているセクションの強調
    3. スクロールに合わせた要素の出現
-   4. ヒーローの波形
+   4. ヒーローの波形を画面外で止める（波形の動き自体は CSS）
    ================================================================== */
 (function () {
   'use strict';
@@ -70,54 +70,14 @@
     Array.prototype.forEach.call(revealables, function (el) { io.observe(el); });
   }
 
-  /* ---- 4. 波形 ---- */
-  var cv = document.getElementById('wave');
-  if (!cv) return;
-  var ctx = cv.getContext('2d');
-  var bars = [];
-  var BAR_W = 3, GAP = 4;
-
-  function sizeCanvas() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var r = cv.getBoundingClientRect();
-    cv.width = Math.max(1, Math.floor(r.width * dpr));
-    cv.height = Math.max(1, Math.floor(r.height * dpr));
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var n = Math.ceil(r.width / (BAR_W + GAP));
-    bars = [];
-    for (var i = 0; i < n; i++) {
-      bars.push({
-        base: 0.10 + Math.random() * 0.34,
-        amp: 0.06 + Math.random() * 0.30,
-        spd: 0.4 + Math.random() * 1.1,
-        off: Math.random() * Math.PI * 2
-      });
-    }
+  /* ---- 4. 波形の一時停止 ----
+     波形は CSS アニメーション（layouts/partials/wave.html と site.css）。
+     ヒーローが画面外にある間だけ、まとめて止める。 */
+  var wave = document.getElementById('wave');
+  if (wave && !reduce && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      var e = entries[entries.length - 1];   /* 同じ要素の通知がまとめて来たら最新を使う */
+      wave.classList.toggle('is-paused', !e.isIntersecting);
+    }).observe(wave);
   }
-
-  function draw(t) {
-    var r = cv.getBoundingClientRect();
-    var w = r.width, h = r.height;
-    ctx.clearRect(0, 0, w, h);
-    var g = ctx.createLinearGradient(0, 0, w, 0);
-    g.addColorStop(0, '#1E9C6F');
-    g.addColorStop(1, '#42DCA3');
-    ctx.fillStyle = g;
-    for (var i = 0; i < bars.length; i++) {
-      var b = bars[i];
-      var v = b.base + (reduce
-        ? b.amp * 0.5
-        : b.amp * (0.5 + 0.5 * Math.sin(t * 0.0011 * b.spd + b.off)));
-      var bh = Math.max(2, v * h);
-      ctx.globalAlpha = 0.30 + v * 0.5;
-      ctx.fillRect(i * (BAR_W + GAP), h - bh, BAR_W, bh);
-    }
-    ctx.globalAlpha = 1;
-  }
-
-  function loop(t) { draw(t); requestAnimationFrame(loop); }
-
-  sizeCanvas();
-  window.addEventListener('resize', sizeCanvas);
-  if (reduce) { draw(0); } else { requestAnimationFrame(loop); }
 })();

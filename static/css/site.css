@@ -232,16 +232,57 @@ h2{
   -webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 62%,transparent);
   pointer-events:none;
 }
-#wave{
+/* 波形：棒は layouts/partials/wave.html が作る。音声とは連動しない飾り。
+   棒ごとの高さ・速さ・開始位置は style 属性の変数（--h, --lo, --d, --t）で渡している。
+   濃さは Canvas 版と同じく「高いほど濃い」：0.3 + 0.5 × 高さ */
+.wave{
+  --n:256;                       /* 表示する棒の本数。画面幅で下のメディアクエリが減らす */
   position:absolute;
   left:0;right:0;bottom:0;
-  width:100%;
   height:34vh;
   max-height:280px;
+  display:flex;
+  align-items:flex-end;
+  column-gap:calc(100% * 4 / (7 * var(--n)));   /* 棒:すき間 = 3:4 */
   opacity:.5;
   pointer-events:none;
   mask-image:linear-gradient(180deg,transparent,#000 55%);
   -webkit-mask-image:linear-gradient(180deg,transparent,#000 55%);
+}
+.wave span{
+  flex:1 1 0;
+  min-width:0;
+  height:calc(var(--h) * 100%);
+  /* 左の濃い緑から右の明るい緑へ。color-mix 非対応のブラウザでは中間色 */
+  background:#30BC89;
+  background:color-mix(in srgb,var(--green) calc(var(--i) / (var(--n) - 1) * 100%),var(--green-deep));
+  transform-origin:50% 100%;     /* 下端を固定して伸び縮みさせる */
+  /* 静止時（prefers-reduced-motion）は低いときと高いときの中間 */
+  transform:scaleY(calc((var(--lo) + 1) / 2));
+  opacity:calc(.3 + .5 * var(--h) * (var(--lo) + 1) / 2);
+  animation:wave var(--d) cubic-bezier(.37,0,.63,1) var(--t) infinite alternate;
+}
+.wave.is-paused span{animation-play-state:paused}   /* 画面外では止める（site.js） */
+@keyframes wave{
+  from{transform:scaleY(var(--lo));opacity:calc(.3 + .5 * var(--h) * var(--lo))}
+  to  {transform:scaleY(1);opacity:calc(.3 + .5 * var(--h))}
+}
+/* 画面幅に合わせて本数を減らし、棒の間隔を以前の Canvas 版（約7px）に近づける */
+@media (max-width:1652px){
+  .wave{--n:192}
+  .wave span:nth-child(n+193){display:none}
+}
+@media (max-width:1204px){
+  .wave{--n:128}
+  .wave span:nth-child(n+129){display:none}
+}
+@media (max-width:784px){
+  .wave{--n:96}
+  .wave span:nth-child(n+97){display:none}
+}
+@media (max-width:560px){
+  .wave{--n:64}
+  .wave span:nth-child(n+65){display:none}
 }
 .hero .wrap{position:relative;z-index:2}
 
@@ -706,4 +747,5 @@ footer{
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
   .btn:hover,.btn-solid:hover{transform:none}
+  .wave span{animation:none}     /* 波形は中間の高さで静止 */
 }

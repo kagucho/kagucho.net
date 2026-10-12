@@ -44,7 +44,7 @@
 
   {{- with $hero }}
   <header class="hero">
-    <canvas id="wave" aria-hidden="true"></canvas>
+    {{ partial "wave.html" . }}
     <div class="wrap">
       {{ with .Params.eyebrow }}<p class="hero-tag">{{ . }}</p>{{ end }}
       <h1 class="wordmark">
