@@ -1,0 +1,17 @@
+# 改行コードの扱いを固定する。
+# これが無いと、人によって Windows 式(CRLF)と標準式(LF)が混ざり、
+# 中身を変えていないファイルまで「変更あり」と表示されて履歴が読めなくなる。
+* text=auto
+
+# 画像・フォントなどは変換してはいけないので、バイナリとして扱う
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.woff  binary
+*.woff2 binary
+*.ttf  binary
+*.otf  binary
+*.eot  binary

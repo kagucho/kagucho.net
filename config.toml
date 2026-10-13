@@ -1,20 +1,33 @@
-baseURL = "https://kagucho.net/"
-languageCode = "ja-jp"
-title = "神楽坂一丁目通信局"
-theme = "hugograyscale"
-publishDir = "docs"
-disableKinds = ["taxonomy", "taxonomyTerm"]
+# ============================================================
+# サイト全体の設定。
+# 文章を直したいだけなら content フォルダを見てください。
+# ============================================================
+
+baseURL = "https://kagucho.net/"          # 公開先の URL
+defaultContentLanguage = "ja"            # 日本語サイト
+title = "神楽坂一丁目通信局"              # ブラウザのタブや検索結果に出る名前
+publishDir = "docs"                       # 完成品の置き場所（GitHub Pages が見るフォルダ）
+disableKinds = ["taxonomy", "term"]       # タグ機能は使わないので切る
 
 [params]
-    # Provide some metadata for search and indexing services
+    # 検索結果や SNS 共有時に出る説明文
     description = "東京理科大学 神楽坂キャンパス サークル 神楽坂一丁目通信局"
     favicon = "ico/favicon.ico"
     images = ["img/kagucho.png"]
 
-[Author]
+# サイトの作成者。ページの作者情報に使われる
+[params.author]
     name = "神楽坂一丁目通信局"
     email = "kagucho.net@gmail.com"
 
-[Social]
+# SNS アカウント。X カード（Twitter カード）に使われる
+[params.social]
     twitter = "kagucho"
     github = "kagucho"
+
+# 言語設定。日本語1つだけ
+[languages]
+  [languages.ja]
+    locale = "ja-JP"
+    label = "日本語"
+    weight = 1

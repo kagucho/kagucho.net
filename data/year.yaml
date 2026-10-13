@@ -1,0 +1,23 @@
+# 一年の流れ。行を足したり消したりすれば、そのまま画面に反映されます。
+# public: true を付けた札だけ緑色になります（人が来る日、という意味）。
+- season: "春"
+  quarter: "Q1"
+  tags:
+    - { name: "M3", public: true }
+    - { name: "新歓", public: false }
+
+- season: "夏"
+  quarter: "Q2"
+  tags:
+    - { name: "夏合宿", public: false }
+
+- season: "秋"
+  quarter: "Q3"
+  tags:
+    - { name: "M3", public: true }
+    - { name: "理大祭", public: true }
+
+- season: "冬"
+  quarter: "Q4"
+  tags:
+    - { name: "冬合宿", public: false }

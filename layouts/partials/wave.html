@@ -1,0 +1,36 @@
+{{- /*
+  ヒーロー下部の波形（装飾）。
+  音声とは連動しない飾りなので、棒の高さ・速さ・開始位置をビルド時に決めて
+  CSS アニメーション（static/css/site.css の「波形」）で動かす。
+  毎フレームの JavaScript 処理は使わない。
+
+  - 棒は最大 256 本。画面幅に応じて CSS 側で 192・128・96・64 本に減らす
+  - 値は棒の番号から作る疑似乱数なので、ビルドするたびに変わらない
+  - 各棒に渡す値（濃さや静止時の高さは CSS 側でこれらから計算する）
+      --i   棒の番号（色のグラデーション用）
+      --h   一番高いときの高さ（波形の枠に対する割合）
+      --lo  一番低いときの高さ（一番高いときを 1 とした割合）
+      --d   片道の時間（往復で 1 周期）
+      --t   開始位置をずらすための負の遅延
+*/ -}}
+{{- $n := 256 -}}
+<div class="wave" id="wave" aria-hidden="true">
+{{- range $i := seq 0 (sub $n 1) -}}
+  {{- $r1 := div (float (mod (hash.FNV32a (printf "wave-base-%d" $i)) 10000)) 10000 -}}
+  {{- $r2 := div (float (mod (hash.FNV32a (printf "wave-amp-%d" $i)) 10000)) 10000 -}}
+  {{- $r3 := div (float (mod (hash.FNV32a (printf "wave-spd-%d" $i)) 10000)) 10000 -}}
+  {{- $r4 := div (float (mod (hash.FNV32a (printf "wave-off-%d" $i)) 10000)) 10000 -}}
+  {{- /* 以前の Canvas 版と同じ範囲 */ -}}
+  {{- $base := add 0.10 (mul $r1 0.34) -}}
+  {{- $amp  := add 0.06 (mul $r2 0.30) -}}
+  {{- $spd  := add 0.4 (mul $r3 1.1) -}}
+  {{- $top  := add $base $amp -}}
+  {{- /* Canvas 版の sin(t * 0.0011 * spd) の半周期（秒） */ -}}
+  {{- $half := div 2.856 $spd -}}
+  {{- $style := printf "--i:%d;--h:%.2f;--lo:%.2f;--d:%.2fs;--t:-%.2fs"
+        $i $top (div $base $top) $half (mul $r4 (mul $half 2)) -}}
+  {{- $style = replace $style ":0." ":." -}}
+  {{- $style = replace $style ":-0." ":-." -}}
+  <span style="{{ $style | safeCSS }}"></span>
+{{- end -}}
+</div>

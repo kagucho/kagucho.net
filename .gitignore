@@ -1,0 +1,7 @@
+# Hugo が実行中に作る一時ファイル
+.hugo_build.lock
+
+# 作業用の圧縮ファイル・退避フォルダ
+*.tgz
+_old/
+_to_delete/
