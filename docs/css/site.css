@@ -15,7 +15,8 @@
   --line-strong:rgba(255,255,255,.16);
 
   --text:#E6ECE9;
-  --muted:#8A9A93;
+  --body:#D3DBD7;                /* 本文の段落。見出し（--text）より一段だけ控えめな白 */
+  --muted:#8A9A93;               /* 補足やラベルなどの控えめな文字 */
   --dim:#5A6B64;
 
   /* 緑：サークルの色。濃淡2段で使い、色数は増やさない */
@@ -45,6 +46,8 @@ body{
   line-height:1.95;
   -webkit-font-smoothing:antialiased;
 }
+/* スマホでは本文を少し小さく、行間も少し詰める */
+@media (max-width:640px){body{font-size:15px;line-height:1.9}}
 
 a{color:inherit}
 img{max-width:100%;display:block}
@@ -145,6 +148,13 @@ img{max-width:100%;display:block}
     white-space:nowrap;
   }
 }
+/* スマホでは、ロゴ（KGC RECORDINGS）はそのままに、メニューの文字と間隔を
+   画面幅に合わせて小さくし、6項目が1行に収まるようにする */
+@media (max-width:560px){
+  .topbar{gap:clamp(7px,2.4vw,14px);padding:0 clamp(10px,3.4vw,16px)}
+  .topbar a{font-size:clamp(7.5px,2.3vw,10px);letter-spacing:.08em}
+}
+@media (max-width:359px){.topbar .wm{font-size:12px}}
 
 /* ------------------------------------------------------------------
    共通レイアウト
@@ -156,7 +166,7 @@ img{max-width:100%;display:block}
   width:100%;
   max-width:var(--maxw);
   margin:0 auto;
-  padding:0 clamp(20px,5vw,56px);
+  padding:0 clamp(24px,5vw,56px);   /* スマホでも左右に 24px は空ける */
 }
 
 section{position:relative}
@@ -165,6 +175,8 @@ section{position:relative}
   padding:clamp(80px,10vw,140px) 0;
   border-top:1px solid var(--line);
 }
+/* スマホでは縦に積まれて長くなるので、セクションの上下の余白を詰める */
+@media (max-width:640px){.band{padding:56px 0}}
 
 .eyebrow{
   font-family:var(--f-mono);
@@ -183,10 +195,28 @@ section{position:relative}
 h2{
   font-family:var(--f-jp);
   font-weight:900;
-  font-size:clamp(1.45rem,3vw,2.25rem);
+  font-size:clamp(1.55rem,3vw,2.25rem);
   line-height:1.45;
   margin:0 0 30px;
+  /* 日本語の見出しを文節で折り返し、行の長さをそろえる（「〜なりま／す。」のような泣き別れを防ぐ） */
+  word-break:auto-phrase;
+  text-wrap:balance;
 }
+/* 「、」ごとのまとまり（layouts/partials/phrase.html）。iPhone の Safari は
+   auto-phrase に未対応なので、こちらで「、」の後ろで折り返すようにする */
+h2 .ph,.fact dd .ph{display:inline-block;text-wrap:wrap}   /* まとまりの中では行をそろえない */
+/* スマホでは About と入部案内の見出しを1行に収める。
+   --len はテンプレートが入れる見出しの文字数。画面幅を文字数で割って文字の大きさを決める */
+@media (max-width:640px){
+  .h-fit{
+    white-space:nowrap;
+    font-size:min(1.55rem,calc((100vw - 2 * max(24px,5vw)) / (var(--len) + .5)));
+  }
+}
+
+/* 文章の最後の行が「す。」のような1〜2文字だけにならないようにする
+   （対応ブラウザのみ。未対応のブラウザでは今までどおり表示される） */
+p,dd,.official{text-wrap:pretty}
 
 .group-head{
   font-family:var(--f-mono);
@@ -207,7 +237,7 @@ h2{
 .prose a{color:var(--green);text-decoration:none;border-bottom:1px solid rgba(66,220,163,.4)}
 .prose a:hover{color:#6BEBBC}
 
-.sub{color:var(--muted)}
+.sub{color:var(--body)}
 
 /* ------------------------------------------------------------------
    ヒーロー
@@ -285,6 +315,12 @@ h2{
   .wave span:nth-child(n+65){display:none}
 }
 .hero .wrap{position:relative;z-index:2}
+/* スマホでは画面いっぱいの高さに固定せず、上の空白をなくす。
+   波形は下の余白（150px）に収まる高さにする */
+@media (max-width:640px){
+  .hero{min-height:0;padding:48px 0 150px}
+  .wave{height:160px}
+}
 
 .hero-tag{
   font-family:var(--f-mono);
@@ -294,6 +330,8 @@ h2{
   text-transform:uppercase;
   color:var(--muted);
   margin:0 0 26px;
+  word-break:keep-all;           /* 「音楽制作サーク／ル」と割らず、スペースの位置で折り返す */
+  overflow-wrap:anywhere;        /* それでも収まらないときだけ、どこでも折り返す */
 }
 
 .wordmark{
@@ -324,7 +362,7 @@ h2{
   max-width:18em;
   text-wrap:balance;
 }
-.hero-sub{color:var(--muted);margin:0 0 38px}
+.hero-sub{color:var(--body);margin:0 0 38px}
 .hero-sub p{margin:0;max-width:26em}
 
 .cta-row{display:flex;flex-wrap:wrap;gap:12px}
@@ -356,13 +394,16 @@ h2{
 /* ------------------------------------------------------------------
    About
    ------------------------------------------------------------------ */
+/* 本文は一文だけなので、本文の下に表を横幅いっぱいで置く。広い画面では表を2列にする */
 .about-grid{
   display:grid;
-  grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
-  gap:clamp(32px,6vw,72px);
-  align-items:start;
+  grid-template-columns:1fr;
+  gap:28px;
 }
-@media (max-width:820px){.about-grid{grid-template-columns:1fr}}
+@media (min-width:821px){
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fact:last-child:nth-child(odd){grid-column:1 / -1}   /* 項目が奇数のときは最後の1つを横幅いっぱいに */
+}
 
 .facts{
   display:grid;
@@ -374,20 +415,25 @@ h2{
 }
 .fact{
   background:var(--ink-800);
-  padding:20px 22px;
+  padding:14px 22px;             /* 項目が多いので、1行ずつの上下は詰めておく */
   display:flex;
   flex-direction:column;
-  gap:4px;
+  gap:2px;
   min-width:0;
 }
 .fact dt{
   font-family:var(--f-mono);
   font-size:10px;
+  line-height:1.6;
   letter-spacing:.18em;
   text-transform:uppercase;
   color:var(--dim);
 }
-.fact dd{margin:0;font-weight:700;font-size:1.02rem;line-height:1.5}
+.fact dd{margin:0;font-weight:700;font-size:1.02rem;line-height:1.55;word-break:auto-phrase}
+@media (max-width:640px){
+  .fact{padding:12px 18px}
+  .fact dd{font-size:.95rem}
+}
 
 /* ------------------------------------------------------------------
    Activities
@@ -440,7 +486,7 @@ h2{
   text-transform:uppercase;
   color:var(--dim);
 }
-.act .prose{color:var(--muted)}
+.act .prose{color:var(--body)}
 .act .btn{align-self:flex-start;margin-top:auto}
 
 /* ------------------------------------------------------------------
@@ -489,6 +535,12 @@ h2{
 }
 .clip-season{font-weight:900;font-size:1.5rem;line-height:1}
 .clip-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+/* スマホでは春夏秋冬を縦に1行ずつ並べ、高さの固定をやめて季節と札を横に並べる */
+@media (max-width:760px){
+  .clip{flex-direction:row;align-items:center;gap:18px;min-height:0;padding:16px 18px}
+  .clip-season{flex:none;width:1.6em}
+  .clip-tags{margin-top:0}
+}
 
 .tag{
   font-family:var(--f-mono);
@@ -596,7 +648,7 @@ h2{
   color:var(--green);
 }
 .rel-title{margin:0;font-weight:700;font-size:1rem;line-height:1.5}
-.rel-note{font-size:.88rem;color:var(--muted);line-height:1.8}
+.rel-note{font-size:.88rem;color:var(--body);line-height:1.8}
 .rel .btn{align-self:flex-start;margin-top:4px}
 
 /* 試聴プレイヤー（SoundCloud の埋め込み） */
@@ -667,6 +719,13 @@ h2{
     var(--ink-800);
   padding:clamp(32px,5.5vw,64px);
 }
+/* スマホでは枠の内側を少し詰めて、見出しが1まとまりずつ収まるようにする */
+@media (max-width:640px){
+  /* 枠を画面の端に少し近づけて、中の見出しと文章に幅を持たせる */
+  .join{padding:32px 16px;margin:0 -12px}
+  /* 枠の中は幅が狭いので、枠の内側の余白と枠線の分を引いて計算する */
+  .join .h-fit{font-size:min(1.35rem,calc((100vw - 2 * max(24px,5vw) + 24px - 34px) / (var(--len) + .5)))}
+}
 .join-body{
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
@@ -711,8 +770,14 @@ h2{
   letter-spacing:.14em;
   color:var(--dim);
   text-transform:uppercase;
+  overflow-wrap:anywhere;        /* 2列で幅が狭いときにアカウント名をはみ出させない */
 }
 .link:hover .s{color:var(--green)}
+/* スマホでは1列だと縦に長くなるので2列にする */
+@media (max-width:640px){
+  .links{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .link{padding:20px 18px}
+}
 
 footer{
   border-top:1px solid var(--line);

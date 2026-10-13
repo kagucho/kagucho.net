@@ -17,11 +17,12 @@
 
 {{- /* 実際に存在するセクションだけを並べる。番号も自動で振り直される */ -}}
 {{- $nav := slice -}}
-{{- if $about }}{{ $nav = $nav | append (dict "id" "about" "label" "About") }}{{ end -}}
 {{- if $acts }}{{ $nav = $nav | append (dict "id" "activities" "label" "Acts") }}{{ end -}}
+{{- if $about }}{{ $nav = $nav | append (dict "id" "about" "label" "About") }}{{ end -}}
 {{- if hugo.Data.year }}{{ $nav = $nav | append (dict "id" "year" "label" "Year") }}{{ end -}}
 {{- if $hasRel }}{{ $nav = $nav | append (dict "id" "releases" "label" "Rel.") }}{{ end -}}
 {{- if $join }}{{ $nav = $nav | append (dict "id" "join" "label" "Join") }}{{ end -}}
+{{- if hugo.Data.links }}{{ $nav = $nav | append (dict "id" "links" "label" "Links") }}{{ end -}}
 
 <div class="playhead" id="playhead"></div>
 
@@ -64,28 +65,6 @@
   </header>
   {{- end }}
 
-  {{- with $about }}
-  <section class="band" id="about">
-    <div class="wrap">
-      <p class="eyebrow reveal">About</p>
-      {{ with .Params.heading }}<h2 class="reveal">{{ . }}</h2>{{ end }}
-      <div class="about-grid">
-        <div class="prose sub reveal">{{ .Content }}</div>
-        {{ with .Params.facts }}
-        <dl class="facts reveal">
-          {{ range . }}
-          <div class="fact">
-            <dt>{{ .label }}</dt>
-            <dd>{{ .value }}</dd>
-          </div>
-          {{ end }}
-        </dl>
-        {{ end }}
-      </div>
-    </div>
-  </section>
-  {{- end }}
-
   {{- if $acts }}
   <section class="band" id="activities">
     <div class="wrap">
@@ -100,6 +79,28 @@
           <div class="prose">{{ .Content }}</div>
           {{ with .Params.button }}<a class="btn" href="{{ .href }}">{{ .text }}</a>{{ end }}
         </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+  {{- with $about }}
+  <section class="band" id="about">
+    <div class="wrap">
+      <p class="eyebrow reveal">About</p>
+      {{ with .Params.heading }}<h2 class="reveal h-fit" style="--len:{{ countrunes . }}">{{ partial "phrase.html" . }}</h2>{{ end }}
+      <div class="about-grid">
+        <div class="prose sub reveal">{{ .Content }}</div>
+        {{ with .Params.facts }}
+        <dl class="facts reveal">
+          {{ range . }}
+          <div class="fact">
+            <dt>{{ .label }}</dt>
+            <dd>{{ partial "phrase.html" .value }}</dd>
+          </div>
+          {{ end }}
+        </dl>
         {{ end }}
       </div>
     </div>
@@ -196,7 +197,7 @@
     <div class="wrap">
       <div class="join reveal">
         <p class="eyebrow">Join Us</p>
-        {{ with .Params.heading }}<h2>{{ . }}</h2>{{ end }}
+        {{ with .Params.heading }}<h2 class="h-fit" style="--len:{{ countrunes . }}">{{ partial "phrase.html" . }}</h2>{{ end }}
         <div class="join-body">
           <div>
             <div class="prose sub">{{ .Content }}</div>
