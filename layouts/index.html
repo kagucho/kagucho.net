@@ -17,11 +17,12 @@
 
 {{- /* 実際に存在するセクションだけを並べる。番号も自動で振り直される */ -}}
 {{- $nav := slice -}}
-{{- if $about }}{{ $nav = $nav | append (dict "id" "about" "label" "About") }}{{ end -}}
 {{- if $acts }}{{ $nav = $nav | append (dict "id" "activities" "label" "Acts") }}{{ end -}}
+{{- if $about }}{{ $nav = $nav | append (dict "id" "about" "label" "About") }}{{ end -}}
 {{- if hugo.Data.year }}{{ $nav = $nav | append (dict "id" "year" "label" "Year") }}{{ end -}}
 {{- if $hasRel }}{{ $nav = $nav | append (dict "id" "releases" "label" "Rel.") }}{{ end -}}
 {{- if $join }}{{ $nav = $nav | append (dict "id" "join" "label" "Join") }}{{ end -}}
+{{- if hugo.Data.links }}{{ $nav = $nav | append (dict "id" "links" "label" "Links") }}{{ end -}}
 
 <div class="playhead" id="playhead"></div>
 
@@ -35,7 +36,7 @@
 </nav>
 
 <nav class="topbar" aria-label="セクション">
-  <span class="wm">KGC RECORDINGS</span>
+  <span class="wm"><span class="wm-full">KGC RECORDINGS</span><span class="wm-short">KGC REC.</span></span>
   {{ range $nav }}<a href="#{{ .id }}">{{ .label }}</a>
   {{ end }}
 </nav>
@@ -64,6 +65,26 @@
   </header>
   {{- end }}
 
+  {{- if $acts }}
+  <section class="band" id="activities">
+    <div class="wrap">
+      <p class="eyebrow reveal">Activities</p>
+      <div class="acts">
+        {{ range $acts }}
+        <article class="act act--{{ .Params.style | default "solid" }} reveal">
+          <div class="act-head">
+            <span class="act-name">{{ .Title }}</span>
+            {{ with .Params.full }}<span class="act-full">{{ . }}</span>{{ end }}
+          </div>
+          <div class="prose">{{ .Content }}</div>
+          {{ with .Params.button }}<a class="btn" href="{{ .href }}">{{ .text }}</a>{{ end }}
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
   {{- with $about }}
   <section class="band" id="about">
     <div class="wrap">
@@ -80,26 +101,6 @@
           </div>
           {{ end }}
         </dl>
-        {{ end }}
-      </div>
-    </div>
-  </section>
-  {{- end }}
-
-  {{- if $acts }}
-  <section class="band" id="activities">
-    <div class="wrap">
-      <p class="eyebrow reveal">Activities</p>
-      <div class="acts">
-        {{ range $acts }}
-        <article class="act act--{{ .Params.style | default "solid" }} reveal">
-          <div class="act-head">
-            <span class="act-name">{{ .Title }}</span>
-            {{ with .Params.full }}<span class="act-full">{{ . }}</span>{{ end }}
-          </div>
-          <div class="prose">{{ .Content }}</div>
-          {{ with .Params.button }}<a class="btn" href="{{ .href }}">{{ .text }}</a>{{ end }}
-        </article>
         {{ end }}
       </div>
     </div>
