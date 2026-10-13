@@ -147,16 +147,14 @@ img{max-width:100%;display:block}
     text-decoration:none;
     white-space:nowrap;
   }
-  .topbar .wm-short{display:none}
 }
-/* 幅の狭いスマホでは、メニューが全部1行に収まるように詰める */
+/* スマホでは、ロゴ（KGC RECORDINGS）はそのままに、メニューの文字と間隔を
+   画面幅に合わせて小さくし、6項目が1行に収まるようにする */
 @media (max-width:560px){
-  .topbar{gap:11px;padding:0 14px}
-  .topbar .wm-full{display:none}
-  .topbar .wm-short{display:inline}
-  .topbar a{letter-spacing:.06em}
+  .topbar{gap:clamp(7px,2.4vw,14px);padding:0 clamp(10px,3.4vw,16px)}
+  .topbar a{font-size:clamp(7.5px,2.3vw,10px);letter-spacing:.08em}
 }
-@media (max-width:359px){.topbar{gap:7px;padding:0 10px}}
+@media (max-width:359px){.topbar .wm{font-size:12px}}
 
 /* ------------------------------------------------------------------
    共通レイアウト
@@ -207,6 +205,14 @@ h2{
 /* 「、」ごとのまとまり（layouts/partials/phrase.html）。iPhone の Safari は
    auto-phrase に未対応なので、こちらで「、」の後ろで折り返すようにする */
 h2 .ph,.fact dd .ph{display:inline-block;text-wrap:wrap}   /* まとまりの中では行をそろえない */
+/* スマホでは About と入部案内の見出しを1行に収める。
+   --len はテンプレートが入れる見出しの文字数。画面幅を文字数で割って文字の大きさを決める */
+@media (max-width:640px){
+  .h-fit{
+    white-space:nowrap;
+    font-size:min(1.55rem,calc((100vw - 2 * max(24px,5vw)) / (var(--len) + .5)));
+  }
+}
 
 /* 文章の最後の行が「す。」のような1〜2文字だけにならないようにする
    （対応ブラウザのみ。未対応のブラウザでは今までどおり表示される） */
@@ -715,8 +721,10 @@ p,dd,.official{text-wrap:pretty}
 }
 /* スマホでは枠の内側を少し詰めて、見出しが1まとまりずつ収まるようにする */
 @media (max-width:640px){
-  .join{padding:32px 22px}
-  .join h2{font-size:1.35rem}    /* 枠の中は幅が狭いので、ほかの見出しより少し小さく */
+  /* 枠を画面の端に少し近づけて、中の見出しと文章に幅を持たせる */
+  .join{padding:32px 16px;margin:0 -12px}
+  /* 枠の中は幅が狭いので、枠の内側の余白と枠線の分を引いて計算する */
+  .join .h-fit{font-size:min(1.35rem,calc((100vw - 2 * max(24px,5vw) + 24px - 34px) / (var(--len) + .5)))}
 }
 .join-body{
   display:grid;
